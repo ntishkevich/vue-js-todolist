@@ -1,20 +1,38 @@
 <template>
-  <div class="dropdown customSelect">
-    <ul class="dropdown-menu">
-      <li v-for="(option, index) in options" :key="index">
-        <a v-on:mousedown.prevent="select(option)">
-          {{ displayTextConte(option) }}
-        </a>
-      </li>
-      <li v-if="!options.length">
-
-      </li>
-    </ul>
+  <div class="todo-item row">
+    <div class="todo-item__information col-md-12" v-if="!item.editable">
+      <span class="todo-item__title col-md-8"> {{ item.title }} </span>
+      <span class="todo-item__date col-md-2"> {{ item.date }} </span>
+      <button class="todo-item__btn__edit btn" @click="startEdit">Edit</button>
+    </div>
+    <div class="todo-item__edit col-md-12" v-if="item.editable">
+      <input v-model="item.title" @blur="stopEdit/>
+    </div>
   </div>
 </template>
 
 <script>
-  const todoItem = new Vue();
+  export default {
+    name: 'todo-item',
+    props: {
+      item: Object,
+      message: String,
+    },
+    data() {
+      return {
+        item: this.props.item,
+        message: this.props.message,
+      };
+    },
+    methods: {
+      stopEdit: () => {
+        this.item.editable = false;
+      },
+      startEdit: () => {
+        this.item.editable = true;
+      },
+    },
+  };
 
 </script>
 

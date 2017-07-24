@@ -1,17 +1,32 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <hello></hello>
+    <!--<hello></hello>-->
+    <todo-item :item="item" :message="message"></todo-item>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello';
+// import Hello from './components/Hello';
+import TodoItem from './components/TodoItem';
 
 export default {
   name: 'app',
   components: {
-    Hello,
+//    Hello,
+    TodoItem,
+  },
+  data() {
+    const item = {
+      title: 'Todo Item 1',
+      date: new Date(),
+      completed: false,
+      editable: false,
+    };
+    return {
+      item,
+      message: 'Hello World',
+    };
   },
 };
 </script>
