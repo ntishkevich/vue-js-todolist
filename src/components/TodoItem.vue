@@ -1,12 +1,13 @@
 <template>
   <div class="todo-item row">
-    <div class="todo-item__information col-md-12" v-if="!item.editable">
-      <span class="todo-item__title col-md-8"> {{ item.title }} </span>
-      <span class="todo-item__date col-md-2"> {{ item.date }} </span>
-      <button class="todo-item__btn__edit btn" @click="startEdit">Edit</button>
+    <div class="todo-item__information col-md-12" v-if="!editable">
+      <span class="todo-item__title col-md-offset-3 col-md-4"> {{ `${todo.name} ${todo.date}` }} </span>
+      <span class="todo-item__date col-md-3">
+        <button class="todo-item__btn__edit btn" @click="startEdit">Edit</button>
+      </span>
     </div>
-    <div class="todo-item__edit col-md-12" v-if="item.editable">
-      <input v-model="item.title" @blur="stopEdit/>
+    <div class="todo-item__edit col-md-12" v-if="editable">
+      <input v-model="todo.name" @blur="stopEdit"/>
     </div>
   </div>
 </template>
@@ -15,21 +16,21 @@
   export default {
     name: 'todo-item',
     props: {
-      item: Object,
-      message: String,
+      todo: Object,
     },
     data() {
       return {
-        item: this.props.item,
-        message: this.props.message,
+        editable: false,
       };
     },
     methods: {
       stopEdit: () => {
-        this.item.editable = false;
+        this.data().todo.editable = false;
       },
       startEdit: () => {
-        this.item.editable = true;
+        // eslint-disable-next-line
+        console.log(this);
+        this.data().todo.editable = true;
       },
     },
   };

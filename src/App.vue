@@ -1,30 +1,27 @@
 <template>
-  <div id="app">
+  <section id="app">
     <img src="./assets/logo.png">
-    <!--<hello></hello>-->
-    <todo-item :item="item" :message="message"></todo-item>
-  </div>
+    <todo-item v-for="todo in todos" :key="todo.uid" :todo="todo"></todo-item>
+  </section>
 </template>
 
 <script>
-// import Hello from './components/Hello';
 import TodoItem from './components/TodoItem';
 
 export default {
   name: 'app',
   components: {
-//    Hello,
     TodoItem,
   },
   data() {
     const item = {
-      title: 'Todo Item 1',
+      uid: 1,
+      name: 'Todo Item 1',
       date: new Date(),
       completed: false,
-      editable: false,
     };
     return {
-      item,
+      todos: [item],
       message: 'Hello World',
     };
   },
