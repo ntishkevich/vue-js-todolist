@@ -1,4 +1,4 @@
-# money-app
+# ToDoList
 
 > A Vue.js project
 
