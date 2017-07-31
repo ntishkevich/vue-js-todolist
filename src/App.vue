@@ -1,27 +1,31 @@
 <template>
   <section id="app">
-    <img src="./assets/logo.png">
-    <todo-item v-for="todo in todos" :key="todo.uid" :todo="todo"></todo-item>
+    <img src="./assets/logo.png"/>
+    <todo-list v-bind:todos="todos"></todo-list>
   </section>
 </template>
 
 <script>
-import TodoItem from './components/TodoItem';
+import TodoList from './components/TodoList';
 
 export default {
   name: 'app',
   components: {
-    TodoItem,
+    TodoList,
   },
   data() {
-    const item = {
-      uid: 1,
-      name: 'Todo Item 1',
-      date: new Date(),
-      completed: false,
-    };
+    const todoList = [];
+    for (let i = 0; i < 10; i += 1) {
+      todoList.push({
+        uid: i + 1,
+        name: `Todo Item ${i + 1}`,
+        date: new Date(),
+        completed: false,
+      });
+    }
+
     return {
-      todos: [item],
+      todos: todoList,
       message: 'Hello World',
     };
   },

@@ -1,13 +1,14 @@
 <template>
   <div class="todo-item row">
     <div class="todo-item__information col-md-12" v-if="!editable">
-      <span class="todo-item__title col-md-offset-3 col-md-4"> {{ `${todo.name} ${todo.date}` }} </span>
-      <span class="todo-item__date col-md-3">
-        <button class="todo-item__btn__edit btn" @click="startEdit">Edit</button>
+      <span class="todo-item__title col-md-offset-3 col-md-3"> {{ todo.name }} </span>
+      <span class="todo-item__date col-md-2">
+        <button class="todo-item__btn__edit btn" @click.prevent="startEdit">Edit</button>
       </span>
     </div>
     <div class="todo-item__edit col-md-12" v-if="editable">
       <input v-model="todo.name" @blur="stopEdit"/>
+      <button class="todo-item__btn__edit btn" @click.prevent="startEdit">Save</button>
     </div>
   </div>
 </template>
@@ -24,13 +25,11 @@
       };
     },
     methods: {
-      stopEdit: () => {
-        this.data().todo.editable = false;
+      stopEdit() {
+        this.editable = false;
       },
-      startEdit: () => {
-        // eslint-disable-next-line
-        console.log(this);
-        this.data().todo.editable = true;
+      startEdit() {
+        this.editable = true;
       },
     },
   };
